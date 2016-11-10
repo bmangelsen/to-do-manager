@@ -1,0 +1,17 @@
+<a href="/lists/new">Add a new list!</a>
+
+<table>
+  <tr>
+    <th>
+      Name
+    </th>
+  </tr>
+  <% @lists.each do |list| %>
+    <tr>
+      <td>
+        <a href="/lists/<%= list.id %>"><%= list.name %></a>
+      </td>
+      
+    </tr>
+  <% end %>
+</table>

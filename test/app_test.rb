@@ -9,9 +9,19 @@ class AppTest < Minitest::Test
     Sinatra::Application
   end
 
-  def test_get_a_page_to_ask_for_a_zip
+  def test_get_home_page_to_load_which_links_to_lists_index
     get "/"
     assert last_response.ok?
-    assert_match(/Enter the name of your first list!/, last_response.body)
+    assert_match(/all of the things/, last_response.body)
+  end
+
+  def test_can_access_lists_index
+    get "/lists"
+    assert_match(/Add a new list!/, last_response.body)
+  end
+
+  def test_can_access_new_list_page
+    get "/lists/new"
+    assert_match(/Give your new list a name!/, last_response.body)
   end
 end

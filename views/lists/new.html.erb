@@ -1,0 +1,16 @@
+<ul>
+  <% @list.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+</ul>
+
+<h2>Give your new list a name!</h2>
+
+<form action="/lists" method="post">
+
+  <label for="list_name">Name</label>
+  <input id="list_name" type="text" name="list[name]" value="<%= @list.name %>">
+
+
+  <input type="submit" value="Save">
+</form>
