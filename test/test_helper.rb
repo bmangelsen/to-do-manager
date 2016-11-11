@@ -10,5 +10,4 @@ ActiveRecord::Base.establish_connection(
 
 require "./item"
 require "./list"
-require "./db/migrations/create_items_table"
-require "./db/migrations/create_lists_table"
+require "./app"

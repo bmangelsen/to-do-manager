@@ -9,9 +9,24 @@
   <% @lists.each do |list| %>
     <tr>
       <td>
-        <a href="/lists/<%= list.id %>"><%= list.name %></a>
+        <%= list.name %>
       </td>
-
+      <td>
+        <form action="/lists/<%= list.id %>" method="get">
+          <input type="submit" value="View List">
+        </form>
+      </td>
+      <td>
+        <form action="/lists/<%= list.id %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Delete List">
+        </form>
+      </td>
+      <td>
+        <form action="/lists/<%= list.id %>/edit" method="get">
+          <input type="submit" value="Edit List Name">
+        </form>
+      </td>
     </tr>
   <% end %>
 </table>

@@ -22,12 +22,32 @@ get "/lists/:id" do
   erb :"items/index.html", layout: :"layout/application.html"
 end
 
+delete "/lists/:id" do
+  List.find(params["id"]).destroy
+  redirect "/lists"
+end
+
 post "/lists" do
   @list = List.new(params["list"])
   if @list.save
     redirect "/lists"
   else
     erb :"lists/new.html", layout: :"layout/application.html"
+  end
+end
+
+get "/lists/:id/edit" do
+  @list = List.find(params["id"])
+  erb :"lists/edit.html", layout: :"layout/application.html"
+end
+
+patch "/lists/:id/edit" do
+  @list = List.find(params["id"])
+  @list.update(params["list"])
+  if @list.save
+    redirect "/lists"
+  else
+    erb :"lists/edit.html", layout: :"layout/application.html"
   end
 end
 
