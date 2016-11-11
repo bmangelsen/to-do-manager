@@ -67,8 +67,24 @@ post "/items" do
 end
 
 delete "/items/:id" do
-  item = Item.find(params["id"])
-  @list = List.find(item.list_id)
-  item.destroy
+  @item = Item.find(params["id"])
+  @list = List.find(@item.list_id)
+  @item.destroy
   redirect "/lists/#{@list.id}"
+end
+
+get "/items/:id/edit" do
+  @item = Item.find(params["id"])
+  erb :"items/edit.html", layout: :"layout/application.html"
+end
+
+patch "/items/:id/edit" do
+  @item = Item.find(params["id"])
+  @list = List.find(@item.list_id)
+  @item.update(params["item"])
+  if @item.save
+    redirect "/lists/#{@list.id}"
+  else
+    erb :"items/edit.html", layout: :"layout/application.html"
+  end
 end
