@@ -79,11 +79,16 @@ class AppTest < Minitest::Test
 
   def test_can_access_view_to_edit_item
     get "/items/#{@bananas.id}/edit"
-    assert_match(/Update your item's name or due date/, last_response.body)
+    assert_match(/Update your item's name, due date, or comments/, last_response.body)
   end
 
   def test_can_edit_item_name
     patch "/items/#{@bananas.id}/edit", item: { name: "apples" }
     assert_equal "apples", Item.last.name
+  end
+
+  def test_can_access_view_for_specific_item
+    get "/items/#{@bananas.id}"
+    assert_match(/Here are some details about your item/, last_response.body)
   end
 end

@@ -4,7 +4,7 @@
   <% end %>
 </ul>
 
-<h2>Update your item's name or due date</h2>
+<h2>Update your item's name, due date, or comments</h2>
 
 <form action="/items/<%= @item.id%>/edit" method="post">
   <input type="hidden" name="_method" value="patch">
@@ -14,6 +14,9 @@
 
   <label for="item_due_date">Due Date</label>
   <input id="item_due_date" type="date" name="item[due_date]" value="<%= @item.due_date %>">
+
+  <label for="item_comments">Comments</label>
+  <input id="item_comments" type="text" name="item[comments]" value="<%= @item.comments %>">
 
   <input type="submit" value="Update">
 </form>

@@ -19,7 +19,7 @@ end
 
 get "/lists/:id" do
   @list = List.find(params["id"])
-  erb :"items/index.html", layout: :"layout/application.html"
+  erb :"lists/show.html", layout: :"layout/application.html"
 end
 
 delete "/lists/:id" do
@@ -83,8 +83,14 @@ patch "/items/:id/edit" do
   @list = List.find(@item.list_id)
   @item.update(params["item"])
   if @item.save
-    redirect "/lists/#{@list.id}"
+    redirect "/items/#{@item.id}"
   else
     erb :"items/edit.html", layout: :"layout/application.html"
   end
+end
+
+get "/items/:id" do
+  @item = Item.find(params["id"])
+  @list = List.find(@item.list_id)
+  erb :"items/show.html", layout: :"layout/application.html"
 end

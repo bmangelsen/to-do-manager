@@ -4,6 +4,7 @@ class CreateItemsTableMigration < ActiveRecord::Migration[5.0]
       t.string :name
       t.date :due_date
       t.integer :list_id
+      t.text :comments
       t.timestamps
     end
   end

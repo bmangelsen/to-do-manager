@@ -12,14 +12,14 @@
         <%= item.name %>
       </td>
       <td>
-        <form action="/items/<%=item.id%>" method="post">
-          <input type="hidden" name="_method" value="delete">
-          <input type="submit" value="Mark as Complete">
+        <form action="/items/<%=item.id%>" method="get">
+          <input type="submit" value="View Item">
         </form>
       </td>
       <td>
-        <form action="/items/<%=item.id%>/edit" method="get">
-          <input type="submit" value="Update Item">
+        <form action="/items/<%=item.id%>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Mark as Complete">
         </form>
       </td>
     </tr>
