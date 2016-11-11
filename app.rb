@@ -65,3 +65,10 @@ post "/items" do
     erb :"items/new.html", layout: :"layout/application.html"
   end
 end
+
+delete "/items/:id" do
+  item = Item.find(params["id"])
+  @list = List.find(item.list_id)
+  item.destroy
+  redirect "/lists/#{@list.id}"
+end
