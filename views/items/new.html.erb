@@ -1,0 +1,19 @@
+<ul>
+  <% @item.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+</ul>
+
+<h2>Give your new item a name and due date!</h2>
+
+<form action="/items" method="post">
+
+  <label for="item_name">Name</label>
+  <input id="item_name" type="text" name="item[name]" value="<%= @item.name %>">
+  <input id="item_list_id" type="hidden" name="item[list_id]" value="<%= @item.list_id %>">
+
+  <label for="item_due_date">Due Date</label>
+  <input id="item_due_date" type="date" name="item[due_date]" value="<%= @item.due_date %>">
+
+  <input type="submit" value="Add">
+</form>

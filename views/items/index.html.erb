@@ -1,18 +1,18 @@
-<a href="/items/new">Add a new item to <%= @list.name %>!</a>
+<a href="/lists/<%= @list.id %>/items/new">Add a new item to <%= @list.name %>!</a>
 
 <table>
   <tr>
     <th>
-      <%= @list.name %>'s items
+      <%= @list.name %>'s unfinished items
     </th>
   </tr>
-  <% @list.items.each do |list| %>
+  <% @list.items.each do |item| %>
     <tr>
       <td>
-        <%= list.item.name %>
+        <%= item.name %>
       </td>
       <td>
-        <%= list.item.due_date %>
+        <%= item.due_date %>
       </td>
     </tr>
   <% end %>

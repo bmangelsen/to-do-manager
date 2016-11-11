@@ -30,3 +30,18 @@ post "/lists" do
     erb :"lists/new.html", layout: :"layout/application.html"
   end
 end
+
+get "/lists/:id/items/new" do
+  @list = List.find(params["id"])
+  @item = @list.items.build
+  erb :"/items/new.html", layout: :"layout/application.html"
+end
+
+post "/items" do
+  @item = Item.new(params["item"])
+  if @item.save
+    redirect "/lists/#{@item.list_id}"
+  else
+    erb :"items/new.html", layout: :"layout/application.html"
+  end
+end
