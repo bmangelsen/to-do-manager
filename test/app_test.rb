@@ -24,4 +24,9 @@ class AppTest < Minitest::Test
     get "/lists/new"
     assert_match(/Give your new list a name!/, last_response.body)
   end
+
+  def test_can_access_items_of_a_specific_list
+    get "/lists/1"
+    assert_match(/Add a new item to/, last_response.body)
+  end
 end

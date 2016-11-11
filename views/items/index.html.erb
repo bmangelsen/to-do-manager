@@ -1,0 +1,19 @@
+<a href="/items/new">Add a new item to <%= @list.name %>!</a>
+
+<table>
+  <tr>
+    <th>
+      <%= @list.name %>'s items
+    </th>
+  </tr>
+  <% @list.items.each do |list| %>
+    <tr>
+      <td>
+        <%= list.item.name %>
+      </td>
+      <td>
+        <%= list.item.due_date %>
+      </td>
+    </tr>
+  <% end %>
+</table>
