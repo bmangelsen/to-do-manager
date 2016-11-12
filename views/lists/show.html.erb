@@ -1,9 +1,10 @@
-<a href="/lists/<%= @list.id %>/items/new">Add a new item to <%= @list.name %>!</a>
+<p><a href="/lists/<%= @list.id %>/items/new">Add a new item</a> or
+   <a href="/next/<%= @list.id %>">pick a random item within <%= @list.name %>!</a></p>
 
 <table>
   <tr>
     <th>
-      <%= @list.name %>'s unfinished items
+      Unfinished items
     </th>
   </tr>
   <% @list.items.each do |item| %>

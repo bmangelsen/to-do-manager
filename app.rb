@@ -94,3 +94,14 @@ get "/items/:id" do
   @list = List.find(@item.list_id)
   erb :"items/show.html", layout: :"layout/application.html"
 end
+
+get "/next" do
+  @item = Item.all.sample
+  erb :"items/show.html", layout: :"layout/application.html"
+end
+
+get "/next/:id" do
+  @list = List.find(params["id"])
+  @item = @list.items.sample
+  erb :"items/show.html", layout: :"layout/application.html"
+end

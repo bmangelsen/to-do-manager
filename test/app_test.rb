@@ -23,7 +23,7 @@ class AppTest < Minitest::Test
 
   def test_can_access_lists_index_page
     get "/lists"
-    assert_match(/Add a new list!/, last_response.body)
+    assert_match(/Add a new list/, last_response.body)
   end
 
   def test_can_access_view_to_create_list
@@ -89,6 +89,16 @@ class AppTest < Minitest::Test
 
   def test_can_access_view_for_specific_item
     get "/items/#{@bananas.id}"
+    assert_match(/Here are some details about your item/, last_response.body)
+  end
+
+  def test_picking_random_from_all_items_redirects_to_view_for_specific_item
+    get "/next"
+    assert_match(/Here are some details about your item/, last_response.body)
+  end
+
+  def test_picking_random_from_list_items_redirects_to_view_for_specific_item
+    get "/next/#{@bananas.id}"
     assert_match(/Here are some details about your item/, last_response.body)
   end
 end
