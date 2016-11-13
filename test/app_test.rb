@@ -54,6 +54,14 @@ class AppTest < Minitest::Test
     assert List.all.empty?
   end
 
+  def test_deleting_list_deletes_items_within
+    delete "/lists/#{@groceries.id}"
+    assert_raises do
+      Item.find(name: "bananas")
+    end
+    assert Item.all.empty?
+  end
+
   def test_can_access_view_of_items_for_specific_list
     get "/lists/#{@groceries.id}"
     assert_match(/bananas/, last_response.body)

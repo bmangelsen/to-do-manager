@@ -7,9 +7,12 @@
   </head>
   <body>
     <h1>What are YOU doing?</h1>
-    <hr>
     <main>
-
+      <form action="/search" method="get">
+        <input type="text" name="q" placeholder="Search all items" required>
+        <input type="submit" value="search">
+      </form>
+      <hr>
       <article class="">
         <%= yield %>
       </article>

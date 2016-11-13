@@ -1,10 +1,10 @@
 <ul>
-  <% @item.errors.full_messages.each do |error| %>
+  <% @items.errors.full_messages.each do |error| %>
     <li><%= error %></li>
   <% end %>
 </ul>
 
-<p>Here are some details about your item:</p>
+<p>Here's the list of items matching your search:</p>
 <table>
   <th>
     <tr>
@@ -19,15 +19,16 @@
       </td>
     </tr>
   </th>
+  <% @items.each do |item| %>
   <tr>
     <td>
-      <%= @item.name %>
+      <%= item.name %>
     </td>
     <td>
-      <%= @item.due_date %>
+      <%= item.due_date %>
     </td>
     <td>
-      <%= @item.comments %>
+      <%= item.comments %>
     </td>
     <td>
       <form action="/items/<%=@item.id%>/edit" method="get">
@@ -35,4 +36,5 @@
       </form>
     </td>
   </tr>
+  <% end %>
 </table>

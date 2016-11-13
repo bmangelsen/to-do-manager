@@ -23,7 +23,9 @@ get "/lists/:id" do
 end
 
 delete "/lists/:id" do
-  List.find(params["id"]).destroy
+  @list = List.find(params["id"])
+  @list.items
+  @list.destroy
   redirect "/lists"
 end
 
@@ -96,12 +98,26 @@ get "/items/:id" do
 end
 
 get "/next" do
-  @item = Item.all.sample
-  erb :"items/show.html", layout: :"layout/application.html"
+  if Item.any?
+    @item = Item.all.sample
+    erb :"items/show.html", layout: :"layout/application.html"
+  else
+    erb :"items/none.html", layout: :"layout/application.html"
+  end
 end
 
 get "/next/:id" do
   @list = List.find(params["id"])
-  @item = @list.items.sample
-  erb :"items/show.html", layout: :"layout/application.html"
+  if Item.any?
+    @item = @list.items.sample
+    erb :"items/show.html", layout: :"layout/application.html"
+  else
+    erb :"items/none.html", layout: :"layout/application.html"
+  end
+end
+
+get "/search" do
+  # @all_items = Item.all
+  @items = Item.find(name: params["q"])
+  erb :"items/search.html", layout: :"layout/application.html"
 end
