@@ -1,18 +1,12 @@
-<p>Here's the list of items matching your search:</p>
+Here's the list of items matching your search:
 <table>
   <th>
     <tr>
       <td>
-        <h3> Name </h3>
+        <h3> Item </h3>
       </td>
       <td>
         <h3> List </h3>
-      </td>
-      <td>
-        <h3> Due Date </h3>
-      </td>
-      <td>
-        <h3> Comments </h3>
       </td>
     </tr>
   </th>
@@ -25,14 +19,13 @@
       <%= @lists.find(item.list_id).name %>
     </td>
     <td>
-      <%= item.due_date %>
+      <form action="/items/<%=item.id%>" method="get">
+        <input type="submit" value="View Item">
+      </form>
     </td>
     <td>
-      <%= item.comments %>
-    </td>
-    <td>
-      <form action="/items/<%=item.id%>/edit" method="get">
-        <input type="submit" value="Update Item">
+      <form action="/lists/<%=item.list_id %>" method="get">
+        <input type="submit" value="View List">
       </form>
     </td>
   </tr>

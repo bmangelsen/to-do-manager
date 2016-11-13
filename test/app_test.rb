@@ -69,7 +69,7 @@ class AppTest < Minitest::Test
 
   def test_can_access_view_to_add_item
     get "/lists/#{@groceries.id}/items/new"
-    assert_match(/Give your new item a name and due date/, last_response.body)
+    assert_match(/Give your new item a name!/, last_response.body)
   end
 
   def test_can_add_item_to_list
@@ -108,5 +108,11 @@ class AppTest < Minitest::Test
   def test_picking_random_from_list_items_redirects_to_view_for_specific_item
     get "/next/#{@bananas.id}"
     assert_match(/Here are some details about your item/, last_response.body)
+  end
+
+  def test_can_search_for_items
+    get "/search", item: { name: "ban" }
+    assert_match(/bananas/, last_response.body)
+    assert_match(/Here's the list of items matching your search:/, last_response.body)
   end
 end

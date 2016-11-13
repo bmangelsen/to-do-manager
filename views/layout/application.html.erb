@@ -3,29 +3,32 @@
   <head>
     <meta charset="utf-8">
     <title>To Do Lists!</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/styles.css" media="screen">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
   </head>
   <body>
-    <h1>What are YOU doing?</h1>
-    <main>
-      <form action="/search" method="get">
-        <input type="text" name="item[name]" placeholder="Search all items" required>
-        <input type="submit" value="search">
-      </form>
-      <hr>
-      <article class="">
-        <%= yield %>
-      </article>
-
-      <hr>
-
-      <aside class="">
-          <p><a href="/lists">Lists</a></p>
-      </aside>
-
-      <footer>
-      </footer>
-
-    </main>
+    <div class="container">
+      <h1>What are YOU doing?</h1>
+        <div id="search">
+          <form action="/search" method="get">
+            <input type="text" name="item[name]" placeholder="Search all items" required>
+            <input class="btn btn-default btn-xs" type="submit" value="Search">
+          </form>
+        </div>
+        <aside>
+          <a href="/lists">Lists Index</a>
+        </aside>
+        <hr>
+        <article>
+          <%= yield %>
+        </article>
+      </main>
+    </div>
   </body>
 </html>

@@ -1,27 +1,29 @@
-<ul>
-  <% @item.errors.full_messages.each do |error| %>
-    <li><%= error %></li>
-  <% end %>
-</ul>
+<% @item.errors.full_messages.each do |error| %>
+  <h3><%= error.upcase %> DINGUS</h3>
+<% end %>
 
+<a href="/lists/<%= @list.id %>">Go to <%= @list.name%></a>
 <p>Here are some details about your item:</p>
-<table>
-  <th>
+<table class="table-bordered table-condensed">
+  <thead>
     <tr>
-      <td>
-        <h3> Name </h3>
-      </td>
-      <td>
-        <h3> List </h3>
-      </td>
-      <td>
-        <h3> Due Date </h3>
-      </td>
-      <td>
-        <h3> Comments </h3>
-      </td>
+      <th>
+        Item
+      </th>
+      <th>
+        List
+      </th>
+      <th>
+        Due Date
+      </th>
+      <th>
+        Comments
+      </th>
+      <th>
+        Options
+      </th>
     </tr>
-  </th>
+  </thead>
   <tr>
     <td>
       <%= @item.name %>
@@ -37,7 +39,7 @@
     </td>
     <td>
       <form action="/items/<%=@item.id%>/edit" method="get">
-        <input type="submit" value="Update Item">
+        <input class="btn btn-default btn-xs" type="submit" value="Update Item">
       </form>
     </td>
   </tr>

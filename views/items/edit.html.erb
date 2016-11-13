@@ -1,10 +1,9 @@
-<ul>
-  <% @item.errors.full_messages.each do |error| %>
-    <li><%= error %></li>
-  <% end %>
-</ul>
+<% @item.errors.full_messages.each do |error| %>
+  <h3><%= error.upcase %> DINGUS</h3>
+<% end %>
 
-<h2>Update your item's name, due date, or comments</h2>
+<a href="/lists/<%= @list.id %>">Go to <%= @list.name%></a>
+<h4>Update your item's name, due date, or comments</h4>
 
 <form action="/items/<%= @item.id%>/edit" method="post">
   <input type="hidden" name="_method" value="patch">
@@ -18,5 +17,5 @@
   <label for="item_comments">Comments</label>
   <input id="item_comments" type="text" name="item[comments]" value="<%= @item.comments %>">
 
-  <input type="submit" value="Update">
+  <input class="btn btn-default btn-xs" type="submit" value="Update">
 </form>

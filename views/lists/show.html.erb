@@ -1,28 +1,37 @@
 <p><a href="/lists/<%= @list.id %>/items/new">Add a new item</a> or
    <a href="/next/<%= @list.id %>">pick a random item within <%= @list.name %>!</a></p>
 
-<table>
-  <tr>
-    <th>
-      Unfinished items
-    </th>
-  </tr>
-  <% @list.items.each do |item| %>
-    <tr>
-      <td>
-        <%= item.name %>
-      </td>
-      <td>
-        <form action="/items/<%=item.id%>" method="get">
-          <input type="submit" value="View Item">
-        </form>
-      </td>
-      <td>
-        <form action="/items/<%=item.id%>" method="post">
-          <input type="hidden" name="_method" value="delete">
-          <input type="submit" value="Mark as Complete">
-        </form>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<% if @items.empty? %>
+  Nothing to see here!! Try adding a new item.
+<% else %>
+  <table class="table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>
+          Items
+        </th>
+        <th colspan="2">
+          Options
+        </th>
+      </tr>
+    </thead>
+    <% @list.items.each do |item| %>
+      <tr>
+        <td>
+          <%= item.name %>
+        </td>
+        <td>
+          <form action="/items/<%=item.id%>" method="get">
+            <input class="btn btn-default btn-xs" type="submit" value="View Item">
+          </form>
+        </td>
+        <td>
+          <form action="/items/<%=item.id%>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input class="btn btn-default btn-xs" type="submit" value="Mark as Complete">
+          </form>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

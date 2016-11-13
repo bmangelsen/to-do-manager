@@ -1,0 +1,29 @@
+main article {
+  background-color: #fbfbfb;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  margin: 0;
+}
+
+main article p {
+  font-family: -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+body h1 {
+  font-weight: bold;
+  font-family: -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+aside {
+  padding-top: 8px
+}
+
+table th {
+  text-align: center;
+}

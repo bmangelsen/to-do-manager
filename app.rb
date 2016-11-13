@@ -4,7 +4,7 @@ require "./db/connection"
 set :method_override, true
 
 get "/" do
-  erb :"home/index.html"
+  erb :"home/index.html", layout: :"layout/application.html"
 end
 
 get "/lists" do
@@ -19,6 +19,7 @@ end
 
 get "/lists/:id" do
   @list = List.find(params["id"])
+  @items = @list.items
   erb :"lists/show.html", layout: :"layout/application.html"
 end
 
@@ -77,6 +78,7 @@ end
 
 get "/items/:id/edit" do
   @item = Item.find(params["id"])
+  @list = List.find(@item.list_id)
   erb :"items/edit.html", layout: :"layout/application.html"
 end
 
@@ -100,6 +102,7 @@ end
 get "/next" do
   if Item.any?
     @item = Item.all.sample
+    @list = List.find(@item.list_id)
     erb :"items/show.html", layout: :"layout/application.html"
   else
     erb :"items/none.html", layout: :"layout/application.html"
@@ -108,23 +111,25 @@ end
 
 get "/next/:id" do
   @list = List.find(params["id"])
-  if Item.any?
+  if @list.items.empty?
+    erb :"items/none.html", layout: :"layout/application.html"
+  else
     @item = @list.items.sample
     erb :"items/show.html", layout: :"layout/application.html"
-  else
-    erb :"items/none.html", layout: :"layout/application.html"
   end
 end
 
 get "/search" do
-  # @all_items = Item.all
   @lists = List.all
   @items = []
   Item.all.each do |item|
-    if item.name.match(/#{params["item"]["name"]}/)
+    if item.name =~ /#{params["item"]["name"]}/
       @items << item
     end
   end
-  # @items = Item.find_by(params["item"])
-  erb :"items/search.html", layout: :"layout/application.html"
+  if @items.empty?
+    erb :"items/none.html", layout: :"layout/application.html"
+  else
+    erb :"items/search.html", layout: :"layout/application.html"
+  end
 end

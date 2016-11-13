@@ -1,10 +1,8 @@
-<ul>
-  <% @list.errors.full_messages.each do |error| %>
-    <li><%= error %></li>
-  <% end %>
-</ul>
+<% @list.errors.full_messages.each do |error| %>
+  <h3><%= error.upcase %> DINGUS</h3>
+<% end %>
 
-<h2>Update your list's name</h2>
+<h4>Update your list's name</h4>
 
 <form action="/lists/<%= @list.id%>/edit" method="post">
   <input type="hidden" name="_method" value="patch">
@@ -12,6 +10,5 @@
   <label for="list_name">Name</label>
   <input id="list_name" type="text" name="list[name]" value="<%= @list.name %>">
 
-
-  <input type="submit" value="Update">
+  <input class="btn btn-default btn-xs" type="submit" value="Update">
 </form>

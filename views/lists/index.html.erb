@@ -1,32 +1,41 @@
-<a href="/lists/new">Add a new list</a> or <a href="/next">pick a totally random thing to do</a>
+<p><a href="/lists/new">Add a new list</a> or <a href="/next">pick a totally random thing to do</a></p>
 
-<table>
-  <tr>
-    <th>
-      LISTS!
-    </th>
-  </tr>
-  <% @lists.each do |list| %>
-    <tr>
-      <td>
-        <%= list.name %>
-      </td>
-      <td>
-        <form action="/lists/<%= list.id %>" method="get">
-          <input type="submit" value="View List">
-        </form>
-      </td>
-      <td>
-        <form action="/lists/<%= list.id %>" method="post">
-          <input type="hidden" name="_method" value="delete">
-          <input type="submit" value="Delete List">
-        </form>
-      </td>
-      <td>
-        <form action="/lists/<%= list.id %>/edit" method="get">
-          <input type="submit" value="Update List Name">
-        </form>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<% if @lists.empty? %>
+  Nothing to see here!! Try adding a new list.
+<% else %>
+  <table class="table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>
+          List
+        </th>
+        <th colspan="3">
+          Options
+        </th>
+      </tr>
+    </thead>
+    <% @lists.each do |list| %>
+      <tr>
+        <td>
+          <%= list.name %>
+        </td>
+        <td>
+          <form action="/lists/<%= list.id %>" method="get">
+            <input class="btn btn-default btn-xs" type="submit" value="View List">
+          </form>
+        </td>
+        <td>
+          <form action="/lists/<%= list.id %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input class="btn btn-default btn-xs" type="submit" value="Delete List">
+          </form>
+        </td>
+        <td>
+          <form action="/lists/<%= list.id %>/edit" method="get">
+            <input class="btn btn-default btn-xs" type="submit" value="Update List Name">
+          </form>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
