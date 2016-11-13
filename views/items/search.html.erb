@@ -1,8 +1,4 @@
-<ul>
-  <% @items.errors.full_messages.each do |error| %>
-    <li><%= error %></li>
-  <% end %>
-</ul>
+
 
 <p>Here's the list of items matching your search:</p>
 <table>
@@ -31,7 +27,7 @@
       <%= item.comments %>
     </td>
     <td>
-      <form action="/items/<%=@item.id%>/edit" method="get">
+      <form action="/items/<%=item.id%>/edit" method="get">
         <input type="submit" value="Update Item">
       </form>
     </td>

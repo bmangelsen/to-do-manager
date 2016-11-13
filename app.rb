@@ -118,6 +118,12 @@ end
 
 get "/search" do
   # @all_items = Item.all
-  @items = Item.find(name: params["q"])
+  @items = []
+  Item.all.each do |item|
+    if item.name.match(/#{params["item"]["name"]}/)
+      @items << item
+    end
+  end
+  # @items = Item.find_by(params["item"])
   erb :"items/search.html", layout: :"layout/application.html"
 end
