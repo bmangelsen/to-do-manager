@@ -118,6 +118,7 @@ end
 
 get "/search" do
   # @all_items = Item.all
+  @lists = List.all
   @items = []
   Item.all.each do |item|
     if item.name.match(/#{params["item"]["name"]}/)

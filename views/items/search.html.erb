@@ -1,11 +1,12 @@
-
-
 <p>Here's the list of items matching your search:</p>
 <table>
   <th>
     <tr>
       <td>
         <h3> Name </h3>
+      </td>
+      <td>
+        <h3> List </h3>
       </td>
       <td>
         <h3> Due Date </h3>
@@ -19,6 +20,9 @@
   <tr>
     <td>
       <%= item.name %>
+    </td>
+    <td>
+      <%= @lists.find(item.list_id).name %>
     </td>
     <td>
       <%= item.due_date %>
