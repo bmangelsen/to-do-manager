@@ -1,46 +1,50 @@
-<% @item.errors.full_messages.each do |error| %>
-  <h3><%= error.upcase %> DINGUS</h3>
-<% end %>
+<% if @item %>
+  <% @item.errors.full_messages.each do |error| %>
+    <h3><%= error.upcase %> DINGUS</h3>
+  <% end %>
 
-<a href="/lists/<%= @list.id %>">Go to <%= @list.name%></a>
-<p>Here are some details about your item:</p>
-<table class="table-bordered table-condensed">
-  <thead>
+  <a href="/lists/<%= @list.id %>">Go to <%= @list.name%></a>
+  <p>Here are some details about your item:</p>
+  <table class="table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>
+          Item
+        </th>
+        <th>
+          List
+        </th>
+        <th>
+          Due Date
+        </th>
+        <th>
+          Comments
+        </th>
+        <th>
+          Options
+        </th>
+      </tr>
+    </thead>
     <tr>
-      <th>
-        Item
-      </th>
-      <th>
-        List
-      </th>
-      <th>
-        Due Date
-      </th>
-      <th>
-        Comments
-      </th>
-      <th>
-        Options
-      </th>
+      <td>
+        <%= @item.name %>
+      </td>
+      <td>
+        <%= @list.name %>
+      </td>
+      <td>
+        <%= @item.due_date %>
+      </td>
+      <td>
+        <%= @item.comments %>
+      </td>
+      <td>
+        <form action="/items/<%=@item.id%>/edit" method="get">
+          <input class="btn btn-default btn-xs" type="submit" value="Update Item">
+        </form>
+      </td>
     </tr>
-  </thead>
-  <tr>
-    <td>
-      <%= @item.name %>
-    </td>
-    <td>
-      <%= @list.name %>
-    </td>
-    <td>
-      <%= @item.due_date %>
-    </td>
-    <td>
-      <%= @item.comments %>
-    </td>
-    <td>
-      <form action="/items/<%=@item.id%>/edit" method="get">
-        <input class="btn btn-default btn-xs" type="submit" value="Update Item">
-      </form>
-    </td>
-  </tr>
-</table>
+  </table>
+<% else %>
+  <p>No items found!</p>
+<% end %>

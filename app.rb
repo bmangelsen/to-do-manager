@@ -103,20 +103,16 @@ get "/next" do
   if Item.any?
     @item = Item.all.sample
     @list = List.find(@item.list_id)
-    erb :"items/show.html", layout: :"layout/application.html"
-  else
-    erb :"items/none.html", layout: :"layout/application.html"
   end
+  erb :"items/show.html", layout: :"layout/application.html"
 end
 
 get "/next/:id" do
   @list = List.find(params["id"])
-  if @list.items.empty?
-    erb :"items/none.html", layout: :"layout/application.html"
-  else
+  if @list.items.any?
     @item = @list.items.sample
-    erb :"items/show.html", layout: :"layout/application.html"
   end
+  erb :"items/show.html", layout: :"layout/application.html"
 end
 
 get "/search" do
@@ -127,9 +123,5 @@ get "/search" do
       @items << item
     end
   end
-  if @items.empty?
-    erb :"items/none.html", layout: :"layout/application.html"
-  else
-    erb :"items/search.html", layout: :"layout/application.html"
-  end
+  erb :"items/search.html", layout: :"layout/application.html"
 end
